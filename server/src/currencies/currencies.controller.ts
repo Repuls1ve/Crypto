@@ -1,7 +1,12 @@
-import { Controller } from '@nestjs/common';
-import { ExchangesService } from 'src/exchanges/exchanges.service';
+import { Controller, Get } from '@nestjs/common';
+import { CurrenciesService } from './currencies.service';
 
 @Controller('currencies')
 export class CurrenciesController {
-  constructor(private readonly exchanges: ExchangesService) {}
+  constructor(private readonly currencies: CurrenciesService) {}
+
+  @Get()
+  async getCurrencies() {
+    return await this.currencies.getCurrencies()
+  }
 }
