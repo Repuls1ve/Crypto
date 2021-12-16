@@ -9,7 +9,8 @@ export class CurrenciesService {
 
   async getCurrencies(): Promise<ICurrency[]> {
     const pairs: IExchangePairs = {
-      binance: await this.exchanges.binance.getPairs()
+      binance: await this.exchanges.binance.getPairs(),
+      ftx: await this.exchanges.ftx.getPairs()
     }
     return this.applyPairs(pairs)
   }

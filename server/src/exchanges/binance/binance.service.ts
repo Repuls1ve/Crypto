@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import Binance from 'binance-api-node';
+import { ExchangeService } from 'src/abstractions/exchange-service.abstract';
 import { IPair } from 'src/interfaces/pairs.interface';
 
 @Injectable()
-export class BinanceService {
+export class BinanceService implements ExchangeService {
   private readonly binance = Binance()
 
   async getPairs(): Promise<IPair[]> {

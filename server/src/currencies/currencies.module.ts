@@ -4,13 +4,15 @@ import { CurrenciesController } from './currencies.controller';
 import { ExchangesService } from 'src/exchanges/exchanges.service';
 import { BinanceService } from 'src/exchanges/binance/binance.service';
 import { CoinbaseService } from 'src/exchanges/coinbase/coinbase.service';
+import { FtxService } from 'src/exchanges/ftx/ftx.service';
 
 @Module({
   providers: [
     CurrenciesService,
     ExchangesService,
     BinanceService,
-    CoinbaseService
+    CoinbaseService,
+    FtxService
   ],
   controllers: [CurrenciesController]
 })
