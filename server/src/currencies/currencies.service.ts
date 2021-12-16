@@ -10,7 +10,8 @@ export class CurrenciesService {
   async getCurrencies(): Promise<ICurrency[]> {
     const pairs: IExchangePairs = {
       binance: await this.exchanges.binance.getPairs(),
-      ftx: await this.exchanges.ftx.getPairs()
+      ftx: await this.exchanges.ftx.getPairs(),
+      kucoin: await this.exchanges.kucoin.getPairs()
     }
     return this.applyPairs(pairs)
   }
@@ -21,6 +22,7 @@ export class CurrenciesService {
       pairs[exchange].forEach(pair => {
         const currencyIndex = currencies.findIndex(c => c.symbol === pair.symbol)
         if (currencyIndex === -1) {
+          pair.symbol !== 'USDT' &&
           currencies.push({
             symbol: pair.symbol,
             exchanges: [

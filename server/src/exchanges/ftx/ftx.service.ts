@@ -12,7 +12,6 @@ export class FtxService implements ExchangeService {
     const btc = (await this.ftx.getMarket('BTC/USD')).result
     return pairs.result
     .filter(pair => pair.type === 'spot' && pair.quoteCurrency === 'USD')
-    .map(pair => ({symbol: pair.baseCurrency, price: pair.price / btc.price}))
+    .map(pair => ({symbol: pair.baseCurrency, price: pair.last / btc.last}))
   }
-
 }
