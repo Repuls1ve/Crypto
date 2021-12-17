@@ -8,6 +8,7 @@ import { FtxService } from 'src/exchanges/ftx/ftx.service';
 import { KucoinService } from 'src/exchanges/kucoin/kucoin.service';
 import { BitfinexService } from 'src/exchanges/bitfinex/bitfinex.service';
 import { HitbtcService } from 'src/exchanges/hitbtc/hitbtc.service';
+import { HuobiService } from 'src/exchanges/huobi/huobi.service';
 
 @Module({
   providers: [
@@ -18,7 +19,8 @@ import { HitbtcService } from 'src/exchanges/hitbtc/hitbtc.service';
     FtxService,
     KucoinService,
     BitfinexService,
-    HitbtcService
+    HitbtcService,
+    HuobiService
   ],
   controllers: [CurrenciesController]
 })
