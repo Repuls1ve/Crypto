@@ -10,7 +10,7 @@ export class BinanceService implements ExchangeService {
   async getPairs(): Promise<IPair[]> {
     const pairs = await this.binance.prices()
     return Object.keys(pairs)
-    .filter(pair => pair.includes('BTC'))
+    .filter(pair => pair.endsWith('BTC'))
     .map(pair => ({
       symbol: pair.replace('BTC', ''),
       price: parseFloat(pairs[pair])

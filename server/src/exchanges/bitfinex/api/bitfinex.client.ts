@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { ExchangeClient } from 'src/abstractions/exchange-client.abstract'
 
-export class BitfinexClient {
+export class BitfinexClient implements ExchangeClient {
   private readonly baseURL = 'https://api-pub.bitfinex.com/v2'
 
   async getAllTickers(): Promise<any> {

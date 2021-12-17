@@ -9,17 +9,19 @@ export class CurrenciesService {
   constructor(private readonly exchanges: ExchangesService) {}
 
   async getCurrencies(): Promise<ICurrency[]> {
-    const [binance, ftx, kucoin, bitfinex] = await Promise.all([
+    const [binance, ftx, kucoin, bitfinex, hitbtc] = await Promise.all([
       this.exchanges.binance.getPairs(),
       this.exchanges.ftx.getPairs(),
       this.exchanges.kucoin.getPairs(),
-      this.exchanges.bitfinex.getPairs()
+      this.exchanges.bitfinex.getPairs(),
+      this.exchanges.hitbtc.getPairs()
     ])
     const pairs: IExchangePairs = {
       binance: binance,
       ftx: ftx,
       kucoin: kucoin,
-      bitfinex: bitfinex
+      bitfinex: bitfinex,
+      hitbtc: hitbtc
     }
     return this.applyPairs(pairs)
   }
@@ -37,6 +39,7 @@ export class CurrenciesService {
     return currencies
   }
 
+  //Need to refactor
   private applyPairs(pairs: IExchangePairs): ICurrency[] {
     let currencies = [] as ICurrency[]
     Object.keys(pairs).forEach(exchange => {

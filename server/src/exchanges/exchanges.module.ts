@@ -5,6 +5,7 @@ import { ExchangesService } from './exchanges.service';
 import { FtxService } from './ftx/ftx.service';
 import { KucoinService } from './kucoin/kucoin.service';
 import { BitfinexService } from './bitfinex/bitfinex.service';
+import { HitbtcService } from './hitbtc/hitbtc.service';
 
 @Module({
   providers: [
@@ -13,7 +14,8 @@ import { BitfinexService } from './bitfinex/bitfinex.service';
     ExchangesService,
     FtxService,
     KucoinService,
-    BitfinexService
+    BitfinexService,
+    HitbtcService
   ]
 })
 export class ExchangesModule {}

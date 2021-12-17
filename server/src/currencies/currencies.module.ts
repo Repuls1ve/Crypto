@@ -7,6 +7,7 @@ import { CoinbaseService } from 'src/exchanges/coinbase/coinbase.service';
 import { FtxService } from 'src/exchanges/ftx/ftx.service';
 import { KucoinService } from 'src/exchanges/kucoin/kucoin.service';
 import { BitfinexService } from 'src/exchanges/bitfinex/bitfinex.service';
+import { HitbtcService } from 'src/exchanges/hitbtc/hitbtc.service';
 
 @Module({
   providers: [
@@ -16,7 +17,8 @@ import { BitfinexService } from 'src/exchanges/bitfinex/bitfinex.service';
     CoinbaseService,
     FtxService,
     KucoinService,
-    BitfinexService
+    BitfinexService,
+    HitbtcService
   ],
   controllers: [CurrenciesController]
 })
