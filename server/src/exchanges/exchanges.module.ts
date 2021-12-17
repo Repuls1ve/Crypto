@@ -8,6 +8,7 @@ import { BitfinexService } from './bitfinex/bitfinex.service';
 import { HitbtcService } from './hitbtc/hitbtc.service';
 import { HuobiService } from './huobi/huobi.service';
 import { PoloniexService } from './poloniex/poloniex.service';
+import { BithumbService } from './bithumb/bithumb.service';
 
 @Module({
   providers: [
@@ -19,7 +20,8 @@ import { PoloniexService } from './poloniex/poloniex.service';
     BitfinexService,
     HitbtcService,
     HuobiService,
-    PoloniexService
+    PoloniexService,
+    BithumbService
   ]
 })
 export class ExchangesModule {}

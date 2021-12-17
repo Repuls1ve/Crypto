@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { BinanceService } from './binance/binance.service';
 import { BitfinexService } from './bitfinex/bitfinex.service';
+import { BithumbService } from './bithumb/bithumb.service';
 import { CoinbaseService } from './coinbase/coinbase.service';
 import { FtxService } from './ftx/ftx.service';
 import { HitbtcService } from './hitbtc/hitbtc.service';
@@ -18,6 +19,7 @@ export class ExchangesService {
     public readonly bitfinex: BitfinexService,
     public readonly hitbtc: HitbtcService,
     public readonly huobi: HuobiService,
-    public readonly poloniex: PoloniexService
+    public readonly poloniex: PoloniexService,
+    public readonly bithumb: BithumbService
   ) {}
 }
