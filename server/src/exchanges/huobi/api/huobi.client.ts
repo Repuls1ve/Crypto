@@ -6,10 +6,10 @@ export class HuobiClient implements ExchangeClient {
   private readonly baseURL = 'https://api.huobi.pro'
 
   async getAllTickers(): Promise<TickersResponse> {
-    return (await axios.get<any>(this.baseURL + '/market/tickers')).data
+    return (await axios.get<TickersResponse>(this.baseURL + '/market/tickers')).data
   }
 
   async getTicker(symbol: string): Promise<TickerResponse> {
-    return (await axios.get<any>(this.baseURL + `/market/detail/merged?symbol=${symbol}`)).data
+    return (await axios.get<TickerResponse>(this.baseURL + `/market/detail/merged?symbol=${symbol}`)).data
   }
 }
