@@ -6,6 +6,7 @@ import { FtxService } from './ftx/ftx.service';
 import { HitbtcService } from './hitbtc/hitbtc.service';
 import { HuobiService } from './huobi/huobi.service';
 import { KucoinService } from './kucoin/kucoin.service';
+import { PoloniexService } from './poloniex/poloniex.service';
 
 @Injectable()
 export class ExchangesService {
@@ -16,6 +17,7 @@ export class ExchangesService {
     public readonly kucoin: KucoinService,
     public readonly bitfinex: BitfinexService,
     public readonly hitbtc: HitbtcService,
-    public readonly huobi: HuobiService
+    public readonly huobi: HuobiService,
+    public readonly poloniex: PoloniexService
   ) {}
 }

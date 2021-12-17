@@ -7,6 +7,7 @@ import { KucoinService } from './kucoin/kucoin.service';
 import { BitfinexService } from './bitfinex/bitfinex.service';
 import { HitbtcService } from './hitbtc/hitbtc.service';
 import { HuobiService } from './huobi/huobi.service';
+import { PoloniexService } from './poloniex/poloniex.service';
 
 @Module({
   providers: [
@@ -17,7 +18,8 @@ import { HuobiService } from './huobi/huobi.service';
     KucoinService,
     BitfinexService,
     HitbtcService,
-    HuobiService
+    HuobiService,
+    PoloniexService
   ]
 })
 export class ExchangesModule {}
