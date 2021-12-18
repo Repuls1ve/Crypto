@@ -9,6 +9,7 @@ import { HitbtcService } from './hitbtc/hitbtc.service';
 import { HuobiService } from './huobi/huobi.service';
 import { PoloniexService } from './poloniex/poloniex.service';
 import { BithumbService } from './bithumb/bithumb.service';
+import { BkexService } from './bkex/bkex.service';
 
 @Module({
   providers: [
@@ -21,7 +22,8 @@ import { BithumbService } from './bithumb/bithumb.service';
     HitbtcService,
     HuobiService,
     PoloniexService,
-    BithumbService
+    BithumbService,
+    BkexService
   ]
 })
 export class ExchangesModule {}

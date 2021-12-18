@@ -11,6 +11,7 @@ import { HitbtcService } from 'src/exchanges/hitbtc/hitbtc.service';
 import { HuobiService } from 'src/exchanges/huobi/huobi.service';
 import { PoloniexService } from 'src/exchanges/poloniex/poloniex.service';
 import { BithumbService } from 'src/exchanges/bithumb/bithumb.service';
+import { BkexService } from 'src/exchanges/bkex/bkex.service';
 
 @Module({
   providers: [
@@ -24,7 +25,8 @@ import { BithumbService } from 'src/exchanges/bithumb/bithumb.service';
     HitbtcService,
     HuobiService,
     PoloniexService,
-    BithumbService
+    BithumbService,
+    BkexService
   ],
   controllers: [CurrenciesController]
 })
