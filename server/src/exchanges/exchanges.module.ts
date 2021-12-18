@@ -11,6 +11,7 @@ import { PoloniexService } from './poloniex/poloniex.service';
 import { BithumbService } from './bithumb/bithumb.service';
 import { BkexService } from './bkex/bkex.service';
 import { CoinexService } from './coinex/coinex.service';
+import { GarantexService } from './garantex/garantex.service';
 
 @Module({
   providers: [
@@ -25,7 +26,8 @@ import { CoinexService } from './coinex/coinex.service';
     PoloniexService,
     BithumbService,
     BkexService,
-    CoinexService
+    CoinexService,
+    GarantexService
   ]
 })
 export class ExchangesModule {}

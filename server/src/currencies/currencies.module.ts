@@ -13,6 +13,7 @@ import { PoloniexService } from 'src/exchanges/poloniex/poloniex.service';
 import { BithumbService } from 'src/exchanges/bithumb/bithumb.service';
 import { BkexService } from 'src/exchanges/bkex/bkex.service';
 import { CoinexService } from 'src/exchanges/coinex/coinex.service';
+import { GarantexService } from 'src/exchanges/garantex/garantex.service';
 
 @Module({
   providers: [
@@ -28,7 +29,8 @@ import { CoinexService } from 'src/exchanges/coinex/coinex.service';
     PoloniexService,
     BithumbService,
     BkexService,
-    CoinexService
+    CoinexService,
+    GarantexService
   ],
   controllers: [CurrenciesController]
 })
