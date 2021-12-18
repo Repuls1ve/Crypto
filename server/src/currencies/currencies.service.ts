@@ -18,7 +18,8 @@ export class CurrenciesService {
       huobi,
       poloniex,
       bithumb,
-      bkex
+      bkex,
+      coinex
     ] = await Promise.all([
       this.exchanges.binance.getPairs(),
       this.exchanges.ftx.getPairs(),
@@ -28,7 +29,8 @@ export class CurrenciesService {
       this.exchanges.huobi.getPairs(),
       this.exchanges.poloniex.getPairs(),
       this.exchanges.bithumb.getPairs(),
-      this.exchanges.bkex.getPairs()
+      this.exchanges.bkex.getPairs(),
+      this.exchanges.coinex.getPairs()
     ])
     const pairs: IExchangePairs = {
       binance: binance,
@@ -39,7 +41,8 @@ export class CurrenciesService {
       huobi: huobi,
       poloniex: poloniex,
       bithumb: bithumb,
-      bkex: bkex
+      bkex: bkex,
+      coinex: coinex
     }
     return this.applyPairs(pairs)
   }

@@ -4,6 +4,7 @@ import { BitfinexService } from './bitfinex/bitfinex.service';
 import { BithumbService } from './bithumb/bithumb.service';
 import { BkexService } from './bkex/bkex.service';
 import { CoinbaseService } from './coinbase/coinbase.service';
+import { CoinexService } from './coinex/coinex.service';
 import { FtxService } from './ftx/ftx.service';
 import { HitbtcService } from './hitbtc/hitbtc.service';
 import { HuobiService } from './huobi/huobi.service';
@@ -22,6 +23,7 @@ export class ExchangesService {
     public readonly huobi: HuobiService,
     public readonly poloniex: PoloniexService,
     public readonly bithumb: BithumbService,
-    public readonly bkex: BkexService
+    public readonly bkex: BkexService,
+    public readonly coinex: CoinexService
   ) {}
 }

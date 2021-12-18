@@ -10,6 +10,7 @@ import { HuobiService } from './huobi/huobi.service';
 import { PoloniexService } from './poloniex/poloniex.service';
 import { BithumbService } from './bithumb/bithumb.service';
 import { BkexService } from './bkex/bkex.service';
+import { CoinexService } from './coinex/coinex.service';
 
 @Module({
   providers: [
@@ -23,7 +24,8 @@ import { BkexService } from './bkex/bkex.service';
     HuobiService,
     PoloniexService,
     BithumbService,
-    BkexService
+    BkexService,
+    CoinexService
   ]
 })
 export class ExchangesModule {}
