@@ -1,3 +1,53 @@
+@use "src/assets/scss/colors";
+@use "src/assets/scss/typography";
+
 .content {
   padding: 25px;
+
+  .title {
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+  }
+
+  .table-wrapper {
+    height: 500px;
+    padding: 24px;
+    border: 1px solid colors.$color-secondary;
+    border-radius: 5px;
+    background-color: colors.$color-primary;
+
+    .table {
+      display: flex;
+      flex-direction: column;
+
+      tr {
+        display: flex;
+        border-bottom: 1px solid colors.$color-secondary;
+
+        th {
+          flex: 1;
+          padding: 0.85rem;
+          display: flex;
+          justify-content: flex-start;
+          color: colors.$color-primary-light;
+          font-size: 0.75rem;
+          font-weight: typography.$weight-medium;
+          text-transform: uppercase;
+        }
+
+        td {
+          flex: 1;
+          padding: 0.85rem;
+          display: flex;
+          justify-content: flex-start;
+          font-size: 0.9rem;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+          flex-grow: 1.5;
+        }
+      }
+    }
+  }
 }
