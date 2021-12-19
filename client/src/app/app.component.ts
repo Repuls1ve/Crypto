@@ -7,5 +7,11 @@ import { MediaObserver } from '@angular/flex-layout';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  sidebarFolded = this.media.isActive('lt-md') ? true : false
+
   constructor(public media: MediaObserver) {}
+
+  toggleSidebar() {
+    this.sidebarFolded = !this.sidebarFolded
+  }
 }

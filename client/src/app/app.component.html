@@ -1,4 +1,16 @@
-<div class="app-wrapper" [class.mobile]="media.isActive('lt-md')">
-  <app-sidebar></app-sidebar>
-  <router-outlet></router-outlet>
+<div
+class="app-wrapper"
+[class.backdrop]="!sidebarFolded && media.isActive('lt-md')"
+[class.mobile]="media.isActive('lt-md')"
+>
+  <app-sidebar
+  [sidebarFolded]="sidebarFolded"
+  (onSidebarToggle)="toggleSidebar()"
+  ></app-sidebar>
+  <div class="column">
+    <app-topbar
+    (onSidebarToggle)="toggleSidebar()"
+    ></app-topbar>
+    <router-outlet></router-outlet>
+  </div>
 </div>
