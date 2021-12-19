@@ -19,6 +19,7 @@
     .table {
       display: flex;
       flex-direction: column;
+      overflow-x: auto;
 
       tr {
         display: flex;
