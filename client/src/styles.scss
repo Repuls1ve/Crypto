@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@use "assets/scss/typography";
+@use "assets/scss/colors";
+
+body {
+  font-family: typography.$font-primary;
+  font-weight: typography.$weight-regular;
+  color: colors.$color-tertiary;
+  background-color: #070d19;
+}
+
+*,
+:after,
+:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

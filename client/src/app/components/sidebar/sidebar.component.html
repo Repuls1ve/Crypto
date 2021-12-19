@@ -1,0 +1,32 @@
+<nav
+class="sidebar"
+[class.folded]="sidebarFolded && media.isActive('gt-sm')"
+[class.folded-mobile]="sidebarFolded && media.isActive('lt-md')"
+[class.overlap]="!sidebarFolded && media.isActive('lt-md')"
+>
+  <div class="header">
+    <a class="brand" [hidden]="sidebarFolded">Company</a>
+    <div class="toggler" (click)="toggleSidebar()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div class="body">
+    <ul class="nav">
+      <li class="category">Main</li>
+      <li
+      class="item"
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      >
+        <img
+        src="/assets/img/dashboard.svg"
+        class="icon"
+        alt="dashboard-icon"
+        >
+        <a class="link">Dashboard</a>
+      </li>
+    </ul>
+  </div>
+</nav>
