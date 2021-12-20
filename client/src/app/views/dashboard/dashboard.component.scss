@@ -37,12 +37,28 @@
           text-transform: uppercase;
         }
 
+        @include breakpoints.tablet {
+          width: calc(155px * 5);
+
+          th {
+            flex-basis: 155px;
+            flex-shrink: 0;
+            flex-grow: 0;
+          }
+        }
+
         td {
           flex: 1;
           padding: 0.85rem;
           display: flex;
           justify-content: flex-start;
           font-size: 0.9rem;
+
+          @include breakpoints.tablet {
+            flex-basis: 155px;
+            flex-shrink: 0;
+            flex-grow: 0;
+          }
         }
       }
 
@@ -53,11 +69,22 @@
         background-color: colors.$color-primary;
         border: 1px solid colors.$color-secondary;
         border-radius: 5px;
-        height: 70%;
-        width: 50%;
+        height: 80%;
+        width: 70%;
 
-        .title {
-          margin-bottom: 10px;
+        .heading {
+          display: flex;
+          justify-content: space-between;
+
+          .title {
+            margin-bottom: 10px;
+          }
+
+          .close {
+            width: 24px;
+            filter: invert(94%) sepia(4%) saturate(683%) hue-rotate(185deg)
+              brightness(93%) contrast(88%);
+          }
         }
 
         tr {
@@ -69,7 +96,11 @@
 
           th:nth-child(1),
           td:nth-child(1) {
-            flex-grow: 0.1;
+            flex-grow: 0;
+          }
+
+          @include breakpoints.tablet {
+            width: 100%;
           }
         }
 
@@ -82,6 +113,20 @@
         tr:nth-last-child(1) {
           td:nth-child(3) {
             color: #ef5350;
+          }
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+          @include breakpoints.tablet {
+            flex-basis: 40%;
+          }
+        }
+
+        th:nth-child(1),
+        td:nth-child(1) {
+          @include breakpoints.tablet {
+            flex-basis: 45px;
           }
         }
 

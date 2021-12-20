@@ -18,7 +18,15 @@
       </tr>
       <app-modal [hidden]="modalHidden" (closeRequest)="closeModal()">
         <div class="exchanges-modal">
-          <h2 class="title">List of exchanges for {{ modalData.name }}</h2>
+          <div class="heading">
+            <h2 class="title">List of exchanges for {{ modalData.name }}</h2>
+            <img
+            class="close"
+            src="/assets/img/close.svg"
+            alt="close"
+            (click)="closeModal()"
+            >
+          </div>
           <table class="table">
             <tr>
               <th>#</th>
