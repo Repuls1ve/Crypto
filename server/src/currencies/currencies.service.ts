@@ -110,6 +110,8 @@ export class CurrenciesService {
       return b.differences.percentage - a.differences.percentage
     })
 
+    currenciesDifferences.currencies = currenciesDifferences.currencies.slice(0, 10)
+
     this.currenciesDifferences = currenciesDifferences
   }
 
