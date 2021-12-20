@@ -16,13 +16,15 @@ import { CurrenciesEffects } from './store/currencies/currencies.effects';
 import { currenciesReducer } from './store/currencies/currencies.reducer';
 import { differencesReducer } from './store/differences/differences.reducer';
 import { DifferencesEffects } from './store/differences/differences.effects';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     DashboardComponent,
-    TopbarComponent
+    TopbarComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

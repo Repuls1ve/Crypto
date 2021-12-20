@@ -1,5 +1,6 @@
 @use "src/assets/scss/colors";
 @use "src/assets/scss/typography";
+@use "src/assets/scss/breakpoints";
 
 .content {
   padding: 25px;
@@ -21,6 +22,7 @@
       overflow-x: auto;
 
       tr {
+        cursor: pointer;
         display: flex;
         border-bottom: 1px solid colors.$color-secondary;
 
@@ -41,6 +43,51 @@
           display: flex;
           justify-content: flex-start;
           font-size: 0.9rem;
+        }
+      }
+
+      .exchanges-modal {
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+        background-color: colors.$color-primary;
+        border: 1px solid colors.$color-secondary;
+        border-radius: 5px;
+        height: 70%;
+        width: 50%;
+
+        .title {
+          margin-bottom: 10px;
+        }
+
+        tr {
+          cursor: default;
+
+          td {
+            text-transform: capitalize;
+          }
+
+          th:nth-child(1),
+          td:nth-child(1) {
+            flex-grow: 0.1;
+          }
+        }
+
+        tr:nth-child(2) {
+          td:nth-child(3) {
+            color: #66bb6a;
+          }
+        }
+
+        tr:nth-last-child(1) {
+          td:nth-child(3) {
+            color: #ef5350;
+          }
+        }
+
+        @include breakpoints.tablet {
+          width: 90%;
+          height: 85%;
         }
       }
     }

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ICurrencyDifferences } from 'src/app/models/currencies.model';
 import { AppState } from 'src/app/store/app.state';
 import { loadDifferences } from 'src/app/store/differences/differences.actions';
 import { selectDifferencesData, selectDifferencesError, selectDifferencesStatus } from 'src/app/store/differences/differences.selectors';
@@ -18,6 +19,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   error$ = this.store.select(selectDifferencesError)
 
   currentDate = Date.now()
+  modalData: ICurrencyDifferences = {} as ICurrencyDifferences
+  modalHidden = true
 
   constructor(private readonly store: Store<AppState>) {}
 
@@ -39,5 +42,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.data$.subscribe(data =>
       lastUpdateDate = this.currentDate - data.timestamp).unsubscribe()
     return lastUpdateDate
+  }
+
+  openModal(currency: ICurrencyDifferences): void {
+    let exchanges = [...currency.exchanges]
+    exchanges.sort((a, b) => b.price - a.price)
+    currency = {...currency, exchanges}
+    this.modalData = currency
+    this.modalHidden = false
+  }
+
+  closeModal(): void {
+    this.modalHidden = true
   }
 }

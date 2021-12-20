@@ -9,13 +9,30 @@
         <th>Highest Price</th>
         <th>Difference $</th>
       </tr>
-      <tr *ngFor="let currency of (data$ | async)?.currencies">
+      <tr *ngFor="let currency of (data$ | async)?.currencies" (click)="openModal(currency)">
         <td>{{ currency.name}}</td>
-        <td>{{ currency.differences.percentage.toFixed(4)}}%</td>
-        <td>${{ currency.differences.lowest.toFixed(6)}}</td>
-        <td>${{ currency.differences.highest.toFixed(6)}}</td>
-        <td>${{ currency.differences.price.toFixed(6)}}</td>
+        <td>{{ currency.differences.percentage.toFixed(4) }}%</td>
+        <td>${{ currency.differences.lowest.toFixed(6) }}</td>
+        <td>${{ currency.differences.highest.toFixed(6) }}</td>
+        <td>${{ currency.differences.price.toFixed(6) }}</td>
       </tr>
+      <app-modal [hidden]="modalHidden" (closeRequest)="closeModal()">
+        <div class="exchanges-modal">
+          <h2 class="title">List of exchanges for {{ modalData.name }}</h2>
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Exchange</th>
+              <th>Price</th>
+            </tr>
+            <tr *ngFor="let exchange of modalData.exchanges; index as index">
+              <td>{{ index + 1 }}</td>
+              <td>{{ exchange.name }}</td>
+              <td>${{ exchange.price.toFixed(6) }}</td>
+            </tr>
+          </table>
+        </div>
+      </app-modal>
     </table>
   </div>
 </main>

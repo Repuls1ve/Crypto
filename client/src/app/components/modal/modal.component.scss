@@ -1,0 +1,28 @@
+@use "src/assets/scss/colors";
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  transform-style: preserve-3d;
+
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateZ(-10px);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: colors.$color-secondary-dark, $alpha: 0);
+    transition: background-color 2s;
+
+    &.active {
+      background-color: rgba($color: colors.$color-secondary-dark, $alpha: 0.7);
+    }
+  }
+}

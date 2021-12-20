@@ -1,0 +1,4 @@
+<div role="dialog" class="modal" *ngIf="!hidden">
+  <div class="modal-backdrop" [class.active]="true" (click)="onBackdropClick()"></div>
+  <ng-content></ng-content>
+</div>
