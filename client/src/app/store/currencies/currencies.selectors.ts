@@ -9,9 +9,9 @@ export const selectCurrenciesStatus = createSelector(
   (state: CurrenciesState) => state.status
 )
 
-export const selectCurrencies = createSelector(
+export const selectCurrenciesData = createSelector(
   currenciesFeature,
-  (state: CurrenciesState) => state.currencies.currencies
+  (state: CurrenciesState) => state.currencies
 )
 
 export const selectCurrenciesError = createSelector(

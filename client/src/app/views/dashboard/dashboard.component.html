@@ -1,19 +1,20 @@
 <main class="content">
-  <h2 class="title">Welcome to Dashboard</h2>
   <div class="table-wrapper">
-    <h3>{{ status$ | async}}</h3>
+    <h4>Last update: {{ getLastUpdateDate() | date:'s'}} seconds ago</h4>
     <table class="table">
       <tr>
         <th>Name</th>
-        <th>Difference</th>
+        <th>Difference %</th>
         <th>Lowest Price</th>
         <th>Highest Price</th>
+        <th>Difference $</th>
       </tr>
-      <tr>
-        <td>BTC</td>
-        <td>$123.33</td>
-        <td>$4702.22</td>
-        <td>$4825.55</td>
+      <tr *ngFor="let currency of (data$ | async)?.currencies">
+        <td>{{ currency.name}}</td>
+        <td>{{ currency.differences.percentage.toFixed(4)}}%</td>
+        <td>${{ currency.differences.lowest.toFixed(6)}}</td>
+        <td>${{ currency.differences.highest.toFixed(6)}}</td>
+        <td>${{ currency.differences.price.toFixed(6)}}</td>
       </tr>
     </table>
   </div>

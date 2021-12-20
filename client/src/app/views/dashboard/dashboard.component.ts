@@ -1,29 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { ICurrency } from 'src/app/models/currencies.model';
 import { AppState } from 'src/app/store/app.state';
-import { loadCurrencies } from 'src/app/store/currencies/currencies.actions';
-import { status } from 'src/app/store/currencies/currencies.reducer';
-import { selectCurrencies, selectCurrenciesError, selectCurrenciesStatus } from 'src/app/store/currencies/currencies.selectors';
+import { loadDifferences } from 'src/app/store/differences/differences.actions';
+import { selectDifferencesData, selectDifferencesError, selectDifferencesStatus } from 'src/app/store/differences/differences.selectors';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
-  currencies$: Observable<ICurrency[]>
-  status$: Observable<status>
-  error$: Observable<string | null>
+export class DashboardComponent implements OnInit, OnDestroy {
+  dateInvervalId!: ReturnType<typeof setInterval>
+  currenciesIntervalId!: ReturnType<typeof setInterval>
 
-  constructor(private readonly store: Store<AppState>) {
-    this.currencies$ = this.store.select(selectCurrencies)
-    this.status$ = this.store.select(selectCurrenciesStatus)
-    this.error$ = this.store.select(selectCurrenciesError)
-  }
+  data$ = this.store.select(selectDifferencesData)
+  status$ = this.store.select(selectDifferencesStatus)
+  error$ = this.store.select(selectDifferencesError)
+
+  currentDate = Date.now()
+
+  constructor(private readonly store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadCurrencies())
+    this.store.dispatch(loadDifferences())
+    this.dateInvervalId = setInterval(() => 
+      this.currentDate = Date.now(), 1000)
+    this.currenciesIntervalId = setInterval(() =>
+      this.store.dispatch(loadDifferences()), 10000)
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.dateInvervalId)
+    clearInterval(this.currenciesIntervalId)
+  }
+
+  getLastUpdateDate() {
+    let lastUpdateDate = this.currentDate
+    this.data$.subscribe(data =>
+      lastUpdateDate = this.currentDate - data.timestamp).unsubscribe()
+    return lastUpdateDate
   }
 }

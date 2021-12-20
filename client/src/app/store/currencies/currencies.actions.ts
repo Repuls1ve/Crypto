@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ICurrencies } from 'src/app/models/currencies.model';
+import { ICurrencies, ICurrenciesError } from 'src/app/models/currencies.model';
 
 export const loadCurrencies = createAction(
   '[Currencies] Load Currencies'
@@ -12,5 +12,5 @@ export const loadCurrenciesSuccess = createAction(
 
 export const loadCurrenciesFailure = createAction(
   '[Currencies] Load Currencies Failure',
-  props<{ error: string }>()
+  props<ICurrenciesError>()
 )

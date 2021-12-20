@@ -14,6 +14,8 @@ import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { CurrenciesEffects } from './store/currencies/currencies.effects';
 import { currenciesReducer } from './store/currencies/currencies.reducer';
+import { differencesReducer } from './store/differences/differences.reducer';
+import { DifferencesEffects } from './store/differences/differences.effects';
 
 @NgModule({
   declarations: [
@@ -27,12 +29,15 @@ import { currenciesReducer } from './store/currencies/currencies.reducer';
     AppRoutingModule,
     HttpClientModule,
     FlexLayoutModule,
-    StoreModule.forRoot({ currencies: currenciesReducer }),
+    StoreModule.forRoot({ 
+      currencies: currenciesReducer,
+      differences: differencesReducer
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([CurrenciesEffects])
+    EffectsModule.forRoot([CurrenciesEffects, DifferencesEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
