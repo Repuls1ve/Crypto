@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ExchangeService } from 'src/abstractions/exchange-service.abstract';
-import { IPair } from 'src/interfaces/pairs.interface';
+import { IBtcPairs, IPair } from 'src/interfaces/pairs.interface';
 import { HuobiClient } from './api/huobi.client';
 
 @Injectable()
@@ -16,5 +16,12 @@ export class HuobiService implements ExchangeService {
       symbol: pair.symbol.replace('btc', '').toUpperCase(),
       price: pair.close
     }))
+  }
+
+  async getBtcPairs(): Promise<IBtcPairs> {
+    const btc = await this.huobi.getTicker('btcusdt')
+    return {
+      'USDT': btc.tick.close
+    }
   }
 }

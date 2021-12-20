@@ -1,14 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { CurrenciesBlacklist } from 'src/constants/currencies.blacklist';
 import { ExchangesService } from 'src/exchanges/exchanges.service';
-import { ICurrency } from 'src/interfaces/currency.interface';
-import { IExchangePairs } from 'src/interfaces/pairs.interface';
+import { ICurrencies, ICurrenciesDifferences, ICurrency, quote } from 'src/interfaces/currency.interface';
+import { IBtcPairs, IExchangePairs } from 'src/interfaces/pairs.interface';
 
 @Injectable()
 export class CurrenciesService {
-  constructor(private readonly exchanges: ExchangesService) {}
+  currencies: ICurrencies
+  currenciesDifferences: ICurrenciesDifferences
+  btcPairs: IBtcPairs
 
-  async getCurrencies(): Promise<ICurrency[]> {
+  constructor(private readonly exchanges: ExchangesService) {
+    this.startUpdatingCurrencies()
+    this.startUpdatingBtcPairs() 
+  }
+
+  getCurrencies(): ICurrencies {
+    return this.toQuoteCurrency('USDT')
+  }
+
+  getCurrenciesDifferences(): ICurrenciesDifferences {
+    return this.currenciesDifferences
+  }
+
+  private startUpdatingBtcPairs(): void {
+    setInterval(() => this.updateBtcPairs(), 5000)
+  }
+
+  private startUpdatingCurrencies(): void {
+    setInterval(() => this.updateCurrencies(), 5000)
+  }
+
+  private async updateBtcPairs(): Promise<void> {
+    this.btcPairs = await this.exchanges.huobi.getBtcPairs()
+  }
+
+  private async updateCurrencies(): Promise<void> {
     const [
       binance,
       ftx, 
@@ -47,32 +74,68 @@ export class CurrenciesService {
       coinex: coinex,
       garantex: garantex
     }
-    return this.applyPairs(pairs)
+    this.currencies = {
+      timestamp: Date.now(),
+      quote: 'USDT',
+      currencies: this.applyPairs(pairs)
+    }
+    this.updateCurrenciesDifferences()
   }
 
-  async getSignificantCurrencies() {
-    let currencies = await this.getCurrencies()
-    currencies.sort((a, b) => {
-      const firstPrices = a.exchanges.map(exch => exch.price)
-      const firstDifference = Math.max(...firstPrices) - Math.min(...firstPrices)
-      const secondPrices = b.exchanges.map(exch => exch.price)
-      const secondDifference = Math.max(...secondPrices) - Math.min(...secondPrices)
+  private updateCurrenciesDifferences(): void {
+    const currencies = this.toQuoteCurrency('USDT')
+    let currenciesDifferences = {
+      ...currencies,
+      currencies: currencies.currencies.map(currency => {
+        const prices = currency.exchanges.map(exch => exch.price)
+        const lowest = Math.min(...prices)
+        const highest = Math.max(...prices)
+        const percentage = ((highest / lowest) - 1) * 100
+        const price = highest - lowest
 
-      return secondDifference - firstDifference
+        return {
+          name: currency.name,
+          differences: {
+            percentage: percentage,
+            price: price,
+            highest: highest,
+            lowest: lowest
+          },
+          exchanges: currency.exchanges 
+        }
+      })
+    }
+
+    currenciesDifferences.currencies.sort((a, b) => {
+      return b.differences.percentage - a.differences.percentage
     })
-    return currencies
+
+    this.currenciesDifferences = currenciesDifferences
   }
 
-  //Need to refactor
+  private toQuoteCurrency(quote: quote): ICurrencies {
+    const quotes = this.btcPairs
+    return {
+      ...this.currencies,
+      currencies: this.currencies.currencies.map(currency => ({
+        ...currency,
+        exchanges: currency.exchanges.map(exch => ({
+          name: exch.name,
+          price: exch.price * quotes[quote]
+        }))
+      }))
+    }
+  }
+
   private applyPairs(pairs: IExchangePairs): ICurrency[] {
     let currencies = [] as ICurrency[]
     Object.keys(pairs).forEach(exchange => {
       pairs[exchange].forEach(pair => {
-        const currencyIndex = currencies.findIndex(c => c.symbol === pair.symbol)
+        const currencyIndex = currencies.findIndex(c => c.name === pair.symbol)
         if (currencyIndex === -1) {
           !CurrenciesBlacklist.includes(pair.symbol) &&
           currencies.push({
-            symbol: pair.symbol,
+            name: pair.symbol,
             exchanges: [
               {name: exchange, price: pair.price}
             ]
