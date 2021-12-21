@@ -1,0 +1,64 @@
+@use "src/assets/scss/colors";
+@use "src/assets/scss/breakpoints";
+
+.pagination {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: auto;
+
+  .pagination-stats {
+    .showing {
+      font-size: 0.875rem;
+    }
+  }
+
+  .pagination-nav {
+    list-style: none;
+    display: flex;
+
+    .previous-page,
+    .next-page {
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: colors.$color-primary;
+      border: 1px solid colors.$color-secondary;
+      border-top-left-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+      padding: 0 1rem;
+      color: colors.$color-hover;
+      cursor: pointer;
+      font-size: 0.875rem;
+
+      &.disabled {
+        pointer-events: none;
+        color: rgba($color: colors.$color-tertiary, $alpha: 0.5);
+      }
+    }
+
+    .page-link {
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: colors.$color-primary;
+      border: 1px solid colors.$color-secondary;
+      font-size: 0.875rem;
+      padding: 0 1rem;
+      color: colors.$color-hover;
+      cursor: pointer;
+
+      &.active {
+        color: colors.$color-tertiary;
+        background-color: colors.$color-hover;
+      }
+    }
+  }
+
+  @include breakpoints.tablet {
+    justify-content: flex-end;
+  }
+}

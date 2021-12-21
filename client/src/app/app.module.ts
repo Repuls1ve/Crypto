@@ -17,6 +17,7 @@ import { currenciesReducer } from './store/currencies/currencies.reducer';
 import { differencesReducer } from './store/differences/differences.reducer';
 import { DifferencesEffects } from './store/differences/differences.effects';
 import { ModalComponent } from './components/modal/modal.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ModalComponent } from './components/modal/modal.component';
     SidebarComponent,
     DashboardComponent,
     TopbarComponent,
-    ModalComponent
+    ModalComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

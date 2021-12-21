@@ -1,46 +1,55 @@
 <main class="content">
   <div class="table-wrapper">
     <h4>Last update: {{ getLastUpdateDate() | date:'s'}} seconds ago</h4>
-    <table class="table">
-      <tr>
-        <th>Name</th>
-        <th>Difference %</th>
-        <th>Lowest Price</th>
-        <th>Highest Price</th>
-        <th>Difference $</th>
-      </tr>
-      <tr *ngFor="let currency of (data$ | async)?.currencies" (click)="openModal(currency)">
-        <td>{{ currency.name}}</td>
-        <td>{{ currency.differences.percentage.toFixed(4) }}%</td>
-        <td>${{ currency.differences.lowest.toFixed(6) }}</td>
-        <td>${{ currency.differences.highest.toFixed(6) }}</td>
-        <td>${{ currency.differences.price.toFixed(6) }}</td>
-      </tr>
-      <app-modal [hidden]="modalHidden" (closeRequest)="closeModal()">
-        <div class="exchanges-modal">
-          <div class="heading">
-            <h2 class="title">List of exchanges for {{ modalData.name }}</h2>
-            <img
-            class="close"
-            src="/assets/img/close.svg"
-            alt="close"
-            (click)="closeModal()"
-            >
+    <app-pagination
+    [pagesDisplay]="3"
+    [totalPages]="(result$ | async)?.totalPages || 10"
+    [showStats]="media.isActive('gt-sm')"
+    [totalItems]="(result$ | async)?.totalItems"
+    [pageItems]="(result$ | async)?.pageItems"
+    (onPageChange)="changePage($event)"
+    >
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Difference %</th>
+          <th>Lowest Price</th>
+          <th>Highest Price</th>
+          <th>Difference $</th>
+        </tr>
+        <tr *ngFor="let currency of (result$ | async)?.data?.currencies" (click)="openModal(currency)">
+          <td>{{ currency.name}}</td>
+          <td>{{ currency.differences.percentage?.toFixed(4) }}%</td>
+          <td>${{ currency.differences.lowest?.toFixed(6) }}</td>
+          <td>${{ currency.differences.highest?.toFixed(6) }}</td>
+          <td>${{ currency.differences.price?.toFixed(6)  }}</td>
+        </tr>
+        <app-modal [hidden]="modalHidden" (closeRequest)="closeModal()">
+          <div class="exchanges-modal">
+            <div class="heading">
+              <h2 class="title">List of exchanges for {{ modalData.name }}</h2>
+              <img
+              class="close"
+              src="/assets/img/close.svg"
+              alt="close"
+              (click)="closeModal()"
+              >
+            </div>
+            <table class="table">
+              <tr>
+                <th>#</th>
+                <th>Exchange</th>
+                <th>Price</th>
+              </tr>
+              <tr *ngFor="let exchange of modalData.exchanges; index as index">
+                <td>{{ index + 1 }}</td>
+                <td>{{ exchange.name }}</td>
+                <td>${{ exchange.price?.toFixed(6) }}</td>
+              </tr>
+            </table>
           </div>
-          <table class="table">
-            <tr>
-              <th>#</th>
-              <th>Exchange</th>
-              <th>Price</th>
-            </tr>
-            <tr *ngFor="let exchange of modalData.exchanges; index as index">
-              <td>{{ index + 1 }}</td>
-              <td>{{ exchange.name }}</td>
-              <td>${{ exchange.price.toFixed(6) }}</td>
-            </tr>
-          </table>
-        </div>
-      </app-modal>
-    </table>
+        </app-modal>
+      </table>
+  </app-pagination>
   </div>
 </main>

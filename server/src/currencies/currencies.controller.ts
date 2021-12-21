@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ICurrencies, ICurrenciesDifferences } from 'src/interfaces/currency.interface';
+import { IPagination, IPaginationParams } from 'src/interfaces/pagination.interface';
 import { CurrenciesService } from './currencies.service';
 
 @Controller('currencies')
@@ -12,7 +13,12 @@ export class CurrenciesController {
   }
 
   @Get('differences')
-  getCurrenciesDifferencies(): ICurrenciesDifferences {
-    return this.currencies.getCurrenciesDifferences()
+  getDifferencies(): ICurrenciesDifferences {
+    return this.currencies.getDifferences()
+  }
+
+  @Get('differences/pagination')  
+  getDifferenciesPagination(@Query() params: IPaginationParams): IPagination<ICurrenciesDifferences> {
+    return this.currencies.getDifferencesPaginated(params)
   }
 }

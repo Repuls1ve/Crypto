@@ -12,7 +12,7 @@ export const selectDifferencesStatus = createSelector(
 
 export const selectDifferencesData = createSelector(
   differencesFeature,
-  (state: DifferencesState) => state.differences
+  (state: DifferencesState) => state.result
 )
 
 export const selectDifferencesError = createSelector(

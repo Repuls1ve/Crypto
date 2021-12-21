@@ -13,8 +13,8 @@ export class DifferencesEffects {
 
   loadDifferences$ = createEffect(() => this.actions$.pipe(
     ofType(loadDifferences),
-    switchMap(() => this.currenciesService.getDifferences().pipe(
-      map(currencies => loadDifferencesSuccess(currencies)),
+    switchMap(action => this.currenciesService.getDifferencesPaginated(action).pipe(
+      map(result => loadDifferencesSuccess(result)),
       catchError(error => of(loadDifferencesFailure({ error })))
     ))
   ))

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CurrenciesBlacklist } from 'src/constants/currencies.blacklist';
 import { ExchangesService } from 'src/exchanges/exchanges.service';
 import { ICurrencies, ICurrenciesDifferences, ICurrency, quote } from 'src/interfaces/currency.interface';
+import { IPagination, IPaginationParams } from 'src/interfaces/pagination.interface';
 import { IBtcPairs, IExchangePairs } from 'src/interfaces/pairs.interface';
 
 @Injectable()
@@ -19,8 +20,27 @@ export class CurrenciesService {
     return this.toQuoteCurrency('USDT')
   }
 
-  getCurrenciesDifferences(): ICurrenciesDifferences {
+  getDifferences(): ICurrenciesDifferences {
     return this.currenciesDifferences
+  }
+
+  getDifferencesPaginated(pagination: IPaginationParams): IPagination<ICurrenciesDifferences> {
+    const { size, page } = pagination
+    const items = this.currenciesDifferences.currencies.slice((page - 1) * size, page * size)
+    const totalItems = this.currenciesDifferences.currencies
+    const totalPages = Math.ceil(totalItems.length / size)
+
+    return {
+      page: page,
+      pageItems: items.length,
+      pageSize: size,
+      totalItems: totalItems.length,
+      totalPages: totalPages,
+      data: {
+        ...this.currenciesDifferences,
+        currencies: items
+      }
+    }
   }
 
   private startUpdatingBtcPairs(): void {
@@ -110,7 +130,7 @@ export class CurrenciesService {
       return b.differences.percentage - a.differences.percentage
     })
 
-    currenciesDifferences.currencies = currenciesDifferences.currencies.slice(0, 10)
+    currenciesDifferences.currencies = currenciesDifferences.currencies
 
     this.currenciesDifferences = currenciesDifferences
   }
