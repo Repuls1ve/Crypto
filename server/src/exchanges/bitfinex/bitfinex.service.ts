@@ -14,7 +14,8 @@ export class BitfinexService implements ExchangeService {
     .filter(pair => pair[0][0] === 't' && pair[0].slice(-3) === 'USD')
     .map(pair => ({
       symbol: pair[0].replace(':', '').replace('t', '').replace('USD', ''),
-      price: pair[7] / btc[0][7]
+      price: pair[7] / btc[0][7],
+      volume: pair[8] * pair[7]
     }))
   }
 }

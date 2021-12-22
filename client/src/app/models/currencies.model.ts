@@ -7,6 +7,7 @@ export interface ICurrenciesError {
 export interface IExchange {
   name: string
   price: number
+  volume: number
 }
 
 export interface ICurrency {

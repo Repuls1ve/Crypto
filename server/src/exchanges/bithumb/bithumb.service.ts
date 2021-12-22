@@ -15,7 +15,8 @@ export class BithumbService implements ExchangeService {
     .filter(pair => pair.s.endsWith('USDT'))
     .map(pair => ({
       symbol: pair.s.replace('-USDT', ''),
-      price: parseFloat(pair.c) / parseFloat(btc.data[0].c)
+      price: parseFloat(pair.c) / parseFloat(btc.data[0].c),
+      volume: parseFloat(pair.v) * parseFloat(pair.c)
     }))
   }
 }

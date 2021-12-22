@@ -6,7 +6,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  overflow: auto;
 
   .pagination-stats {
     .showing {
@@ -17,6 +16,7 @@
   .pagination-nav {
     list-style: none;
     display: flex;
+    overflow: auto;
 
     .previous-page,
     .next-page {

@@ -14,7 +14,8 @@ export class GarantexService implements ExchangeService {
     .filter(pair => pair.target_currency === 'USD')
     .map(pair => ({
       symbol: pair.ticker_id.replace('_USD', ''),
-      price: parseFloat(pair.last_price) / parseFloat(btc.last_price)
+      price: parseFloat(pair.last_price) / parseFloat(btc.last_price),
+      volume: parseFloat(pair.target_volume)
     }))
   }
 }

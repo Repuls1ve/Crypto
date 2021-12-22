@@ -15,7 +15,8 @@ export class CoinexService implements ExchangeService {
     .filter(symbol => symbol.endsWith('USDT'))
     .map(symbol => ({
       symbol: symbol.replace('USDT', ''),
-      price: parseFloat(pairs[symbol].last) / parseFloat(btc.last)
+      price: parseFloat(pairs[symbol].last) / parseFloat(btc.last),
+      volume: parseFloat(pairs[symbol].vol) * parseFloat(pairs[symbol].last)
     }))
   }
 }

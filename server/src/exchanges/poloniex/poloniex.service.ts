@@ -14,7 +14,8 @@ export class PoloniexService implements ExchangeService {
     .filter(symbol => symbol.startsWith('USDT'))
     .map(symbol => ({
       symbol: symbol.replace('USDT_', ''),
-      price: parseFloat(pairs[symbol].last) / parseFloat(btc.last)
+      price: parseFloat(pairs[symbol].last) / parseFloat(btc.last),
+      volume: parseFloat(pairs[symbol].baseVolume)
     }))
   }
 }

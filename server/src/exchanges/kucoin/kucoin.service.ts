@@ -15,7 +15,8 @@ export class KucoinService implements ExchangeService {
     .filter(pair => pair.symbol.includes('-USDT'))
     .map(pair => ({
       symbol: pair.symbol.replace('-USDT', ''),
-      price: parseFloat(pair.last) / parseFloat(btc.last)
+      price: parseFloat(pair.last) / parseFloat(btc.last),
+      volume: parseFloat(pair.volValue)
     }))
   }
 }

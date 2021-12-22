@@ -15,7 +15,8 @@ export class BkexService implements ExchangeService {
     .filter(pair => pair.symbol.endsWith('USDT'))
     .map(pair => ({
       symbol: pair.symbol.replace('_USDT', ''),
-      price: pair.close / btc.data[0].close
+      price: pair.close / btc.data[0].close,
+      volume: pair.quoteVolume
     }))
   }
 }

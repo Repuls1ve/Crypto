@@ -14,7 +14,8 @@ export class HuobiService implements ExchangeService {
     .filter(pair => pair.symbol.endsWith('btc'))
     .map(pair => ({
       symbol: pair.symbol.replace('btc', '').toUpperCase(),
-      price: pair.close
+      price: pair.close,
+      volume: pair.vol * pair.close
     }))
   }
 

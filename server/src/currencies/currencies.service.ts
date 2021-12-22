@@ -110,7 +110,7 @@ export class CurrenciesService {
         const prices = currency.exchanges.map(exch => exch.price)
         const lowest = Math.min(...prices)
         const highest = Math.max(...prices)
-        const percentage = ((highest / lowest) - 1) * 100
+        const percentage = ((highest / (lowest || highest)) - 1) * 100
         const price = highest - lowest
 
         return {
@@ -126,11 +126,12 @@ export class CurrenciesService {
       })
     }
 
+    currenciesDifferences.currencies = currenciesDifferences.currencies.filter(
+      c => c.differences.percentage && c.differences.percentage !== 0)
+
     currenciesDifferences.currencies.sort((a, b) => {
       return b.differences.percentage - a.differences.percentage
     })
-
-    currenciesDifferences.currencies = currenciesDifferences.currencies
 
     this.currenciesDifferences = currenciesDifferences
   }
@@ -143,7 +144,8 @@ export class CurrenciesService {
         ...currency,
         exchanges: currency.exchanges.map(exch => ({
           name: exch.name,
-          price: exch.price * quotes[quote]
+          price: exch.price * quotes[quote],
+          volume: exch.volume
         }))
       }))
     }
@@ -158,20 +160,25 @@ export class CurrenciesService {
           !CurrenciesBlacklist.includes(pair.symbol) &&
           currencies.push({
             name: pair.symbol,
-            exchanges: [
-              {name: exchange, price: pair.price}
-            ]
+            exchanges: [{
+              name: exchange,
+              price: pair.price,
+              volume: pair.volume
+            }]
           })
         }
         else {
           const exchangeIndex = currencies[currencyIndex].exchanges.findIndex(exch => exch.name === exchange)
           if (exchangeIndex === -1) {
-            currencies[currencyIndex].exchanges.push({name: exchange, price: pair.price})
+            currencies[currencyIndex].exchanges.push({
+              name: exchange,
+              price: pair.price,
+              volume: pair.volume
+            })
           }
         }
       })
     })
-
     return currencies
   }
 }

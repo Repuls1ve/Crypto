@@ -1,9 +1,10 @@
-import { ICurrency, quote } from './currency.interface';
+import { ICurrency } from './currency.interface';
 import { IExchange } from './exchange.interface';
 
 export interface IPair {
   symbol: ICurrency['name']
   price: IExchange['price']
+  volume: IExchange['volume']
 }
 
 export interface IExchangePairs {

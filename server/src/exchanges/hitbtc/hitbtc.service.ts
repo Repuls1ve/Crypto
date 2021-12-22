@@ -9,12 +9,14 @@ export class HitbtcService implements ExchangeService {
 
   async getPairs(): Promise<IPair[]> {
     const pairs = await this.hitbtc.getAllTickers()
+    const btc = await this.hitbtc.getTicker('BTCUSDT')
 
     return Object.keys(pairs)
     .filter(symbol => symbol.endsWith('BTC'))
     .map(symbol => ({
       symbol: symbol.replace('BTC', ''),
-      price: parseFloat(pairs[symbol].last)
+      price: parseFloat(pairs[symbol].last),
+      volume: parseFloat(pairs[symbol].volume_quote) * parseFloat(btc.last)
     }))
   }
 }
