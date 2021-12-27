@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { GateService } from 'src/exchanges/gate/gate.service';
 import { AscendexService } from './ascendex/ascendex.service';
 import { BinanceService } from './binance/binance.service';
 import { BitfinexService } from './bitfinex/bitfinex.service';
@@ -32,6 +33,7 @@ export class ExchangesService {
     public readonly garantex: GarantexService,
     public readonly bybit: BybitService,
     public readonly ascendex: AscendexService,
-    public readonly mexc: MexcService
+    public readonly mexc: MexcService,
+    public readonly gate: GateService
   ) {}
 }
