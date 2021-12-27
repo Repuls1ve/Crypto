@@ -12,6 +12,7 @@ import { BithumbService } from './bithumb/bithumb.service';
 import { BkexService } from './bkex/bkex.service';
 import { CoinexService } from './coinex/coinex.service';
 import { GarantexService } from './garantex/garantex.service';
+import { BybitService } from './bybit/bybit.service';
 
 @Module({
   providers: [
@@ -27,7 +28,8 @@ import { GarantexService } from './garantex/garantex.service';
     BithumbService,
     BkexService,
     CoinexService,
-    GarantexService
+    GarantexService,
+    BybitService
   ]
 })
 export class ExchangesModule {}

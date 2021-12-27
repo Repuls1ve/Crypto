@@ -14,6 +14,7 @@ import { BithumbService } from 'src/exchanges/bithumb/bithumb.service';
 import { BkexService } from 'src/exchanges/bkex/bkex.service';
 import { CoinexService } from 'src/exchanges/coinex/coinex.service';
 import { GarantexService } from 'src/exchanges/garantex/garantex.service';
+import { BybitService } from 'src/exchanges/bybit/bybit.service';
 
 @Module({
   providers: [
@@ -30,7 +31,8 @@ import { GarantexService } from 'src/exchanges/garantex/garantex.service';
     BithumbService,
     BkexService,
     CoinexService,
-    GarantexService
+    GarantexService,
+    BybitService
   ],
   controllers: [CurrenciesController]
 })
