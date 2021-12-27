@@ -14,6 +14,7 @@ import { CoinexService } from './coinex/coinex.service';
 import { GarantexService } from './garantex/garantex.service';
 import { BybitService } from './bybit/bybit.service';
 import { AscendexService } from './ascendex/ascendex.service';
+import { MexcService } from './mexc/mexc.service';
 
 @Module({
   providers: [
@@ -31,7 +32,8 @@ import { AscendexService } from './ascendex/ascendex.service';
     CoinexService,
     GarantexService,
     BybitService,
-    AscendexService
+    AscendexService,
+    MexcService
   ]
 })
 export class ExchangesModule {}

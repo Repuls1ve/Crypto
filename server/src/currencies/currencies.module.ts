@@ -16,6 +16,7 @@ import { CoinexService } from 'src/exchanges/coinex/coinex.service';
 import { GarantexService } from 'src/exchanges/garantex/garantex.service';
 import { BybitService } from 'src/exchanges/bybit/bybit.service';
 import { AscendexService } from 'src/exchanges/ascendex/ascendex.service';
+import { MexcService } from 'src/exchanges/mexc/mexc.service';
 
 @Module({
   providers: [
@@ -34,7 +35,8 @@ import { AscendexService } from 'src/exchanges/ascendex/ascendex.service';
     CoinexService,
     GarantexService,
     BybitService,
-    AscendexService
+    AscendexService,
+    MexcService
   ],
   controllers: [CurrenciesController]
 })

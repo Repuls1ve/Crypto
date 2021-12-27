@@ -12,6 +12,7 @@ import { GarantexService } from './garantex/garantex.service';
 import { HitbtcService } from './hitbtc/hitbtc.service';
 import { HuobiService } from './huobi/huobi.service';
 import { KucoinService } from './kucoin/kucoin.service';
+import { MexcService } from './mexc/mexc.service';
 import { PoloniexService } from './poloniex/poloniex.service';
 
 @Injectable()
@@ -30,6 +31,7 @@ export class ExchangesService {
     public readonly coinex: CoinexService,
     public readonly garantex: GarantexService,
     public readonly bybit: BybitService,
-    public readonly ascendex: AscendexService
+    public readonly ascendex: AscendexService,
+    public readonly mexc: MexcService
   ) {}
 }
