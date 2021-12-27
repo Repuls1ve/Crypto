@@ -11,6 +11,7 @@ import { CoinexService } from './coinex/coinex.service';
 import { FtxService } from './ftx/ftx.service';
 import { GarantexService } from './garantex/garantex.service';
 import { HitbtcService } from './hitbtc/hitbtc.service';
+import { HooService } from './hoo/hoo.service';
 import { HuobiService } from './huobi/huobi.service';
 import { KucoinService } from './kucoin/kucoin.service';
 import { MexcService } from './mexc/mexc.service';
@@ -34,6 +35,7 @@ export class ExchangesService {
     public readonly bybit: BybitService,
     public readonly ascendex: AscendexService,
     public readonly mexc: MexcService,
-    public readonly gate: GateService
+    public readonly gate: GateService,
+    public readonly hoo: HooService
   ) {}
 }

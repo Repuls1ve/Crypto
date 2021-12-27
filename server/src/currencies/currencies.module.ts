@@ -18,6 +18,7 @@ import { BybitService } from 'src/exchanges/bybit/bybit.service';
 import { AscendexService } from 'src/exchanges/ascendex/ascendex.service';
 import { MexcService } from 'src/exchanges/mexc/mexc.service';
 import { GateService } from 'src/exchanges/gate/gate.service';
+import { HooService } from 'src/exchanges/hoo/hoo.service';
 
 @Module({
   providers: [
@@ -38,7 +39,8 @@ import { GateService } from 'src/exchanges/gate/gate.service';
     BybitService,
     AscendexService,
     MexcService,
-    GateService
+    GateService,
+    HooService
   ],
   controllers: [CurrenciesController]
 })

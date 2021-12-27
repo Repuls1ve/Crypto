@@ -71,7 +71,8 @@ export class CurrenciesService {
       bybit,
       ascendex,
       mexc,
-      gate
+      gate,
+      hoo
     ] = await Promise.all([
       this.exchanges.binance.getPairs(),
       this.exchanges.ftx.getPairs(),
@@ -87,7 +88,8 @@ export class CurrenciesService {
       this.exchanges.bybit.getPairs(),
       this.exchanges.ascendex.getPairs(),
       this.exchanges.mexc.getPairs(),
-      this.exchanges.gate.getPairs()
+      this.exchanges.gate.getPairs(),
+      this.exchanges.hoo.getPairs()
     ])
     const pairs: IExchangePairs = {
       binance: binance,
@@ -104,7 +106,8 @@ export class CurrenciesService {
       bybit: bybit,
       ascendex: ascendex,
       mexc: mexc,
-      gate: gate
+      gate: gate,
+      hoo: hoo
     }
     this.currencies = {
       timestamp: Date.now(),

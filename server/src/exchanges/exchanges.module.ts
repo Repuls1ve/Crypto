@@ -16,6 +16,7 @@ import { BybitService } from './bybit/bybit.service';
 import { AscendexService } from './ascendex/ascendex.service';
 import { MexcService } from './mexc/mexc.service';
 import { GateService } from './gate/gate.service';
+import { HooService } from './hoo/hoo.service';
 
 @Module({
   providers: [
@@ -35,7 +36,8 @@ import { GateService } from './gate/gate.service';
     BybitService,
     AscendexService,
     MexcService,
-    GateService
+    GateService,
+    HooService
   ]
 })
 export class ExchangesModule {}
