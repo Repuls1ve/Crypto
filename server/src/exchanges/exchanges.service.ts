@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { AscendexService } from './ascendex/ascendex.service';
 import { BinanceService } from './binance/binance.service';
 import { BitfinexService } from './bitfinex/bitfinex.service';
 import { BithumbService } from './bithumb/bithumb.service';
@@ -28,6 +29,7 @@ export class ExchangesService {
     public readonly bkex: BkexService,
     public readonly coinex: CoinexService,
     public readonly garantex: GarantexService,
-    public readonly bybit: BybitService
+    public readonly bybit: BybitService,
+    public readonly ascendex: AscendexService
   ) {}
 }
